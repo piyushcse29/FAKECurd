@@ -32,14 +32,15 @@ public class UserService {
 
     @PostMapping("/addUser")
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<Object>  addUser(Users user) {
+    ResponseEntity<Object>  addUser(@RequestBody Users user) {
+        System.out.println("Hello\n");
        String response = users.addUser(user);
         defaultMesage.setResponse(response);
         return new ResponseEntity(defaultMesage, HttpStatus.CREATED);
     }
 
     @PutMapping("/editUser")
-    ResponseEntity<Object> editUser(Users user) {
+    ResponseEntity<Object> editUser(@RequestBody Users user) {
         String response = users.editUser(user);
         defaultMesage.setResponse(response);
         return new ResponseEntity(defaultMesage, HttpStatus.CREATED);

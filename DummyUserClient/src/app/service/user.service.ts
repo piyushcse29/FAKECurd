@@ -14,7 +14,7 @@ export class UserService {
      {id: 1, firstName: 'praks', lastName: 'pb', email: 'praks@gmail.com'},
    ];
    return Observable.of(fakeUsers).delay(5000);*/
-    return this.http.get<User[]>(this.baseUrl+'/getUsers');
+    return this.http.get<User[]>('/DummyUsers/getUsers');
   }
 
   getUserById(id: number) {
@@ -22,14 +22,14 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.http.post(this.baseUrl, user);
+    return this.http.post('/DummyUsers/addUser', user);
   }
 
   updateUser(user: User) {
-    return this.http.put(this.baseUrl + '/' + user.id, user);
+    return this.http.put('/DummyUsers/editUser', user);
   }
 
   deleteUser(id: number) {
-    return this.http.delete(this.baseUrl + '/' + id);
+    return this.http.delete('/DummyUsers/deleteUser/'+id);
   }
 }

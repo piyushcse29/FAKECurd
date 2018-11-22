@@ -27,6 +27,7 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.addForm.value);
     this.userService.createUser(this.addForm.value)
       .subscribe( data => {
         this.router.navigate(['list-user']);
