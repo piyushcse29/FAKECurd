@@ -3,6 +3,7 @@ package com.piyushmittal.DummyUser.services;
 
 import com.piyushmittal.DummyUser.UserNotFoundException;
 import com.piyushmittal.DummyUser.controllers.Users;
+import com.piyushmittal.DummyUser.util.DefaultMesage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,31 +18,39 @@ public class UserService {
     @Autowired
     Users users;
 
+    @Autowired
+    DefaultMesage defaultMesage;
+
 
     @GetMapping("/getUsers")
     @ResponseStatus(HttpStatus.ACCEPTED)
     List<Users> getUsers() {
-        if(users.getAllUsers().size() == 0)
+        if (users.getAllUsers().size() == 0)
             throw new UserNotFoundException("No user found");
         return users.getAllUsers();
-
     }
 
     @PostMapping("/addUser")
     @ResponseStatus(HttpStatus.CREATED)
-    void addUser(Users user) {
-        users.addUser(user);
+    ResponseEntity<Object>  addUser(Users user) {
+       String response = users.addUser(user);
+        defaultMesage.setResponse(response);
+        return new ResponseEntity(defaultMesage, HttpStatus.CREATED);
     }
 
     @PutMapping("/editUser")
-    void editUser(@RequestBody Users user){
-        addUser(user);
+    ResponseEntity<Object> editUser(Users user) {
+        String response = users.editUser(user);
+        defaultMesage.setResponse(response);
+        return new ResponseEntity(defaultMesage, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteUser/{userId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void deleteUser(@PathVariable String userId){
-        users.deleteUser(userId);
+    ResponseEntity<Object> deleteUser(@PathVariable String userId) {
+        String response = users.deleteUser(userId);
+        defaultMesage.setResponse(response);
+        return new ResponseEntity(defaultMesage, HttpStatus.CREATED);
     }
 
 }

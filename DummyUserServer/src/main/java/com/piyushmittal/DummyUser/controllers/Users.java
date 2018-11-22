@@ -68,13 +68,35 @@ public class Users {
         return usersList;
     }
 
-    public void addUser(Users user){
-        usersMap.put(user.getId(), user);
-        usersList = new ArrayList<Users>(usersMap.values());
+    public String addUser(Users user){
+        if(usersMap.containsKey(user.getId())){
+            return "user already present";
+        }else{
+            usersMap.put(user.getId(), user);
+            usersList = new ArrayList<Users>(usersMap.values());
+            return "user created";
+        }
+
     }
 
-    public void deleteUser(String userId){
-        usersMap.remove(userId);
-        usersList = new ArrayList<Users>(usersMap.values());
+    public String editUser(Users user){
+        if(!usersMap.containsKey(user.getId())){
+            return "user not present";
+        }else{
+            usersMap.put(user.getId(), user);
+            usersList = new ArrayList<Users>(usersMap.values());
+            return "user updated";
+        }
+
+    }
+
+    public String deleteUser(String userId){
+        if(!usersMap.containsKey(userId)){
+            return "user not present";
+        }else {
+            usersMap.remove(userId);
+            usersList = new ArrayList<Users>(usersMap.values());
+            return "user deleted";
+        }
     }
 }
