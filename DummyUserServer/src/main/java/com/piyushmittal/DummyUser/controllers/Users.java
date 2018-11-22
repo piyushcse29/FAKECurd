@@ -4,6 +4,7 @@ package com.piyushmittal.DummyUser.controllers;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Controller;
 
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,9 @@ public class Users {
 
 
     String id;
+    @Size(min = 3)
     String firstName;
+    @Size(min = 3)
     String lastName;
     String email;
 

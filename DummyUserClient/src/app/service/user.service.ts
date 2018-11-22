@@ -14,7 +14,7 @@ export class UserService {
      {id: 1, firstName: 'praks', lastName: 'pb', email: 'praks@gmail.com'},
    ];
    return Observable.of(fakeUsers).delay(5000);*/
-    return this.http.get<User[]>('/getUsers');
+    return this.http.get<User[]>(this.baseUrl+'/getUsers');
   }
 
   getUserById(id: number) {

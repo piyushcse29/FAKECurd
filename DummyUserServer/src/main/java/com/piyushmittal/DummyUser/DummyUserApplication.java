@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @SpringBootApplication
 
 public class DummyUserApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(DummyUserApplication.class, args);
 	}
